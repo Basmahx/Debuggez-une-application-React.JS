@@ -8,14 +8,14 @@ const Slider = () => {
   const { data } = useData();
   const [index, setIndex] = useState(0);
 
-  const byDateDesc = data?.focus.sort(
-    (evtA, evtB) => new Date(evtB.date) - new Date(evtA.date) // Sort by most recent event.
-  );
+  const byDateDesc = data?.focus
+    ? data.focus.sort((evtA, evtB) => new Date(evtB.date) - new Date(evtA.date)) // Sort by most recent event.
+    : [];
 
   // Prevent the white page from appearing.
   const nextCard = () => {
     setTimeout(
-      () => setIndex(index + 1 < byDateDesc.length ? index + 1 : 0), // length is undifined
+      () => setIndex(index + 1 < byDateDesc.length ? index + 1 : 0),
       5000
     );
   };
