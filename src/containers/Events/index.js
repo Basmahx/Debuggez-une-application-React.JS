@@ -16,9 +16,9 @@ const EventList = () => {
 
   const filteredEvents = data?.events
     ? data.events
-        .filter((event) => !type || event.type === type)
-        .sort((a, b) => new Date(b.date) - new Date(a.date)) // most recent events first
-        .slice((currentPage - 1) * PER_PAGE, currentPage * PER_PAGE) // Apply pagination
+        .filter((event) => !type || event.type === type) // dans l'ancien code, il n'y avait aucun filtrage basé sur type.
+        .sort((a, b) => new Date(b.date) - new Date(a.date)) // affiches les évéenments les plus récents en premier
+        .slice((currentPage - 1) * PER_PAGE, currentPage * PER_PAGE) //  L'utilisation de .slice() permet de découper directement la liste filtrée au lieu de parcourir tout le tableau comme dans la version précédente.
     : [];
 
   const changeType = (evtType) => {

@@ -9,13 +9,12 @@ const Slider = () => {
   const [index, setIndex] = useState(0);
 
   const byDateDesc = data?.focus
-    ? data.focus.sort((evtA, evtB) => new Date(evtB.date) - new Date(evtA.date)) // Sort by most recent event.
+    ? data.focus.sort((evtA, evtB) => new Date(evtB.date) - new Date(evtA.date)) // un tri du plus récent au plus ancien.
     : [];
 
-  // Prevent the white page from appearing.
   const nextCard = () => {
     setTimeout(
-      () => setIndex(index + 1 < byDateDesc.length ? index + 1 : 0),
+      () => setIndex(index + 1 < byDateDesc.length ? index + 1 : 0), // Ajouter +1 permet de faire avancer le slider à l'image suivante, évitant ainsi qu'il reste sur l'image actuelle ou affiche une page blanche.
       5000
     );
   };
@@ -26,7 +25,7 @@ const Slider = () => {
 
   return (
     <div className="SlideCardList">
-      {/* seperated the maps */}
+      {/* seperated the maps warning concernant le key */}
       {byDateDesc?.map((event, idx) => (
         <div
           key={event.title} // event.id made the warning persist, was replaced with event.title
