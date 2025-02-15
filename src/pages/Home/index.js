@@ -13,7 +13,7 @@ import Modal from "../../containers/Modal";
 import { useData } from "../../contexts/DataContext";
 
 const Page = () => {
-  const { last } = useData();
+  const { last } = useData(); // Last est utilisé dans le composant, mais n'était pas inclus dans le contexte.
   return (
     <>
       <header>
@@ -115,7 +115,7 @@ const Page = () => {
           <h3>Notre derniére prestation</h3>
           {last && (
             <EventCard
-              imageSrc={last?.cover}
+              imageSrc={last?.cover} // les valeur de images et title n'etais pas definis
               title={last?.title}
               date={new Date(last.date)}
               small
